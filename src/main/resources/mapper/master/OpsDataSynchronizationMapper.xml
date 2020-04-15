@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lingoace.task.mapper.master.OpsDataSynchronizationMapper" >
+  <resultMap id="BaseResultMap" type="com.lingoace.task.entity.master.OpsDataSynchronization" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tb_name" property="tbName" jdbcType="VARCHAR" />
+    <result column="sync_id" property="syncId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="sync_result" property="syncResult" jdbcType="INTEGER" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, tb_name, sync_id, status, sync_result, times, start_time, end_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ops_data_synchronization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ops_data_synchronization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lingoace.task.entity.master.OpsDataSynchronization" >
+    insert into ops_data_synchronization (id, tb_name, sync_id, 
+      status, sync_result, times, 
+      start_time, end_time)
+    values (#{id,jdbcType=INTEGER}, #{tbName,jdbcType=VARCHAR}, #{syncId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{syncResult,jdbcType=INTEGER}, #{times,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lingoace.task.entity.master.OpsDataSynchronization" >
+    insert into ops_data_synchronization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="tbName != null" >
+        tb_name,
+      </if>
+      <if test="syncId != null" >
+        sync_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="syncResult != null" >
+        sync_result,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tbName != null" >
+        #{tbName,jdbcType=VARCHAR},
+      </if>
+      <if test="syncId != null" >
+        #{syncId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="syncResult != null" >
+        #{syncResult,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lingoace.task.entity.master.OpsDataSynchronization" >
+    update ops_data_synchronization
+    <set >
+      <if test="tbName != null" >
+        tb_name = #{tbName,jdbcType=VARCHAR},
+      </if>
+      <if test="syncId != null" >
+        sync_id = #{syncId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="syncResult != null" >
+        sync_result = #{syncResult,jdbcType=INTEGER},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lingoace.task.entity.master.OpsDataSynchronization" >
+    update ops_data_synchronization
+    set tb_name = #{tbName,jdbcType=VARCHAR},
+      sync_id = #{syncId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      sync_result = #{syncResult,jdbcType=INTEGER},
+      times = #{times,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByTableName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from ops_data_synchronization
+    where tb_name = #{tableName,jdbcType=VARCHAR}
+  </select>
+
+</mapper>
